@@ -43,8 +43,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github](https://github.com/alialaba/notes-app)
-- Live Site URL: [Netlify](https://note-app-ali.netlify.app/)
+- Solution URL: 
+- Live Site URL: 
 
 ## My process
 
@@ -74,9 +74,4 @@ Users should be able to:
 - [React mde](https://www.npmjs.com/package/react-mde) - A simple yet powerful and extensible React Markdown Editor that aims to have feature parity with the Github Markdown editor. React-mde has no 3rd party dependencies.
 - [Nano id](https://www.npmjs.com/package/nanoid) - A tiny, secure, URL-friendly, unique string ID generator for JavaScript.
 
-
-## Author
-
-- Website - [Aliyu AbdulGaniy](https://www.github.com/alialaba)
-- Twitter - [@thisaliaba](https://www.twitter.com/thisaliaba)
 
