@@ -7,17 +7,14 @@ import {nanoid} from "nanoid"
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 
-export default function App() {
+function App() {
   //lazy state initialization (retrieve notes from local storage)
   const [notes, setNotes] = useState( () => JSON.parse(localStorage.getItem("notes")) || []);
 
   // check if notes[0] exists Before getting notes[0].id
   const [curNoteId, setCurNoteId] = useState((notes[0]  && notes[0].id) || "");
 
-
-
 //Store note in window local storage
-
   useEffect(()=>{
     localStorage.setItem("notes",  JSON.stringify(notes))
 
@@ -26,14 +23,25 @@ export default function App() {
 
 // Move  updated/modified note to the top 
 const updateNote =(text)=>{
+
+   // Create a new empty array
+            // Loop over the original array
+                // if the id matches
+                    // put the updated note at the 
+                    // beginning of the new array
+                // else
+                    // push the old note to the end
+                    // of the new array
+            // return the new array
+
   setNotes(oldNotes =>{
   let updatedArr = [];
   for(let i = 0; i < oldNotes.length; i++){
-    let oldNote  = oldNotes[i] ;
-    if(oldNote.id === curNoteId){
-      updatedArr.unshift({...oldNote, body: text});
-    }else{
-      updatedArr.push(oldNote)
+      let oldNote  = oldNotes[i] ;
+      if(oldNote.id === curNoteId){
+        updatedArr.unshift({...oldNote, body: text});
+      }else{
+        updatedArr.push(oldNote)
     }
   }
   return updatedArr
@@ -49,7 +57,6 @@ function deleteNote(event, noteId){
 
 }
 
-
   // Create a new note 
   const createNewNote = ()=>{
     const newNote ={
@@ -61,50 +68,51 @@ function deleteNote(event, noteId){
   }
 
 
-  //find curremt note
+  //find current note
   function findCurrentNote (){
     return notes.find(note=>{
       return note.id === curNoteId }) || notes[0] ;
   }
  
 
-  return (
+return (
     <main >
 
-      {notes.length > 0 ?
+    {notes.length > 0 ?
 
-<Split
-sizes={[25, 75]}
-direction="horizontal" 
-className="split">
+    <Split
+    sizes={[25, 75]}
+    direction="horizontal" 
+    className="split">
 
-<Sidebar 
-newNote={createNewNote} 
-currentNote={findCurrentNote()} 
-setCurNoteId={setCurNoteId} 
-notes={notes} 
-deleteNote={deleteNote}
-/>
+    <Sidebar 
+    newNote={createNewNote} 
+    currentNote={findCurrentNote()} 
+    setCurNoteId={setCurNoteId} 
+    notes={notes} 
+    deleteNote={deleteNote}
+    />
 
-{curNoteId &&  notes.length > 0 && 
-  <Editor 
-  currentNote={findCurrentNote()} 
-  updateNote={updateNote} />
-}
-</Split>
-:
+    {curNoteId &&  notes.length > 0 && 
+      <Editor 
+      currentNote={findCurrentNote()} 
+      updateNote={updateNote} />
+    }
+    </Split>
+    :
+          
+    <div className="no-notes">
+    <h1>You have no notes</h1>
+    <button className="first-note" onClick={createNewNote}>
+        Create one now
+    </button>
+    </div>
       
-<div className="no-notes">
-<h1>You have no notes</h1>
-<button className="first-note" onClick={createNewNote}>
-    Create one now
-</button>
-</div>
-      
-      }
-      
+  }      
      
-    </main>
+  </main>
   )
 }
+
+export default App
 

@@ -2,16 +2,16 @@ import { useState } from "react";
 import img from "../assets/icons8-note.svg"
 import { useMemo } from "react";
 
-export default function({newNote, notes, currentNote, setCurNoteId, deleteNote}){
+export default function Sidebar({newNote, notes, currentNote, setCurNoteId, deleteNote}){
     const [numberOfItemShown, setNumberOfItemShown] = useState(7);
 
-const showMore=()=>{
-    if(numberOfItemShown <= notes.length){
-        setNumberOfItemShown( numberOfItemShown + 5)
-    }else{
-        setNumberOfItemShown(notes.length)
+    const showMore=()=>{
+        if(numberOfItemShown <= notes.length){
+            setNumberOfItemShown( numberOfItemShown + 5)
+        }else{
+            setNumberOfItemShown(notes.length)
+        }
     }
-}
 
 
     const noteElements = useMemo(()=>(
